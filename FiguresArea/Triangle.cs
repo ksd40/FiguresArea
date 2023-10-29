@@ -13,7 +13,7 @@ namespace FiguresArea
             get { return _a; }
             private set
             {
-                if (value < 0) throw new ArgumentException();
+                if (value < 0) throw new ArgumentException("Side A of a triangle cannot take a negative value!");
                 _a = value;
             }
         }
@@ -23,7 +23,7 @@ namespace FiguresArea
             get { return _b; }
             private set
             {
-                if (value < 0) throw new ArgumentException();
+                if (value < 0) throw new ArgumentException("Side B of a triangle cannot take a negative value!");
                 _b = value;
             }
         }
@@ -33,7 +33,7 @@ namespace FiguresArea
             get { return _c; }
             private set
             {
-                if (value < 0) throw new ArgumentException();
+                if (value < 0) throw new ArgumentException("Side C of a triangle cannot take a negative value!");
                 _c = value;
             }
         }
@@ -49,7 +49,7 @@ namespace FiguresArea
                 C = c;
             }
             else
-                throw new ArgumentException();
+                throw new ArgumentException("A triangle with given sides does not exist!");
         }
 
         public override double CalculateArea()
