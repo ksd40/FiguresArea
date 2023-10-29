@@ -1,0 +1,60 @@
+/* PostgreSQL */
+
+CREATE TABLE product
+(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR
+);
+
+CREATE TABLE category
+(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR
+);
+
+CREATE TABLE product_category
+(
+    id BIGSERIAL PRIMARY KEY,
+    product_id INTEGER NOT NULL REFERENCES product,
+    category_id   INTEGER NOT NULL REFERENCES category,
+    UNIQUE (product_id, category_id)
+);
+
+INSERT INTO product (id, name)
+VALUES (1, 'Молоко'),
+       (2, 'Мясо куриное'),
+       (3, 'Сыр'),
+       (4, 'Хлеб'),
+       (5, 'Мясо индейки'),
+       (6, 'Огурцы'),
+       (7, 'Помидоры'),
+       (8, 'Лимонад'),
+       (9, 'Арбуз');
+
+INSERT INTO category (id, name)
+VALUES (1, 'Молочная продукция'),
+       (2, 'Хлебобулочные изделия'),
+       (3, 'Мясная продукция'),
+       (4, 'Овощи'),
+       (5, 'Товары по акции');
+       
+
+INSERT INTO product_category (product_id, category_id)
+VALUES (1, 1),
+       (1, 5),
+       (2, 3),
+       (3, 1),
+       (4, 2),
+       (4, 5),
+       (5, 3),
+       (6, 4),
+       (6, 5),
+       (7, 4);
+
+
+
+/* SQL query */
+
+SELECT product.name, category.name FROM product 
+LEFT JOIN product_category ON product_category.product_id = product.id 
+LEFT JOIN category ON category.id = product_category.category_id;
